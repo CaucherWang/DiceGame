@@ -17,7 +17,7 @@ private:
 	}
 	static void printWin(const string &player1, const string &player2, unsigned round, unsigned player1_score, unsigned player2_score)
 	{
-		string s=player1+"Win! "+player2+" Lose.\n"+player1+"'s score is "+to_string(player1_score)+
+		string s=player1+" Win! "+player2+" Lose.\n"+player1+"'s score is "+to_string(player1_score)+
 		", and "+player2+"'s score is "+to_string(player2_score);
 		if(round)
 			s= "In round "+to_string(round)+", "+s;
@@ -42,7 +42,7 @@ public:
 	static void printStrategy()
 	{
 		string s="There are 2 built-in strategies to choose.\n 0: Roll dice twice. Compare the remainder of 6 after sum the dice result up."
-		"\n 1:Roll dice twice. Compare the remainder of 6 after multiplying the dice result.\n"
+		"\n 1: Roll dice twice. Compare the remainder of 6 after multiplying the dice result.\n"
 		"Please input 0/1 for selection.";
 		printAtom(s);
 	}
