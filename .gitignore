@@ -1,4 +1,6 @@
 /DiceGame/.vs
 /DiceGame/Debug
 /.idea
-/DiceGame/DiceGame.vcxproj*
+/DiceGame/DiceGame.vcxproj
+/DiceGame/DiceGame.vcxproj.filters
+/DiceGame/DiceGame.vcxproj.user

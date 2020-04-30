@@ -4,6 +4,7 @@
 
 #include "player.h"
 #include "game_res.h"
+#include <memory>
 
 
 class IGameStrategy

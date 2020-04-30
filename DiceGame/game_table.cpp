@@ -2,20 +2,20 @@
 #include "message_print.h"
 
 //TODO:thread security
-bool CGameTable::joinTable(shared_ptr<CPlayer> player)
+bool CGameTable::joinTable(CPlayer* player)
 {
 	switch (m_table_state)
 	{
-	case CLOSED:
+	case ETableState::CLOSED:
 		m_player1 = player;
-		m_table_state = WAITING;
+		m_table_state = ETableState::WAITING;
 		return true;
-	case WAITING:
+	case ETableState::WAITING:
 		m_player2 = player;
-		m_table_state = PLAYING;
-
+		m_table_state = ETableState::PLAYING;
+		startGame();
 		return true;
-	case PLAYING:
+	case ETableState::PLAYING:
 	default:
 		return false;
 	}
@@ -26,7 +26,7 @@ void CGameTable::startGame()
 	CMessagePrint::printWelcome();
 	setStrategy();
 	bool tag=true;
-	while (m_table_state!=CLOSED)
+	while (m_table_state!= ETableState::CLOSED)
 	{
 		if(tag)
 			tag = dealCommand(inputRoundCommand());
@@ -37,11 +37,11 @@ void CGameTable::startGame()
 
 bool CGameTable::dealCommand(const char command)
 {
-	unsigned *res_1=nullptr,*res_2=nullptr;
+	unsigned res_1=0,res_2=0;
 	switch (command)
 	{
 	case 'q':
-		m_table_state=CLOSED;
+		m_table_state= ETableState::CLOSED;
 		showHisResult();
 		refreshTable();
 		return true;
@@ -50,8 +50,8 @@ bool CGameTable::dealCommand(const char command)
 		m_player2->initialize();
 		return false;
 	case 'r':
-		rollDices(res_1,res_2);
-		return showResult(*res_1,*res_2,m_game_round);
+		rollDices(&res_1,&res_2);
+		return showResult(res_1,res_2,m_game_round);
 	}
 }
 
@@ -130,7 +130,7 @@ void CGameTable::refreshTable()
 	m_player1=m_player2=nullptr;
 	delete m_game_strategy;
 	m_game_strategy = nullptr;
-	m_table_state=CLOSED;
+	m_table_state= ETableState::CLOSED;
 	m_history_result.clear();
 	m_round=0;
 	m_game_round = 0;

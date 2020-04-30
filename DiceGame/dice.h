@@ -1,8 +1,12 @@
 #pragma once
 #ifndef DICE_H
 #define DICE_H
+#include <cstdlib>
 
-unsigned int random(int x);
+static unsigned int randomNum(int x)
+{
+	return rand()%x+1;
+}
 
 class CDice
 {
@@ -13,7 +17,7 @@ public:
 	CDice() :m_upVal(0){};
 	unsigned rollDice()
 	{
-		m_upVal = random(6) + 1;
+		m_upVal = randomNum(6) + 1;
 		return m_upVal;
 	}
 	unsigned getVal()const
@@ -25,7 +29,6 @@ public:
 		m_upVal = 0;
 	}
 };
-
 
 
 #endif

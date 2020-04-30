@@ -85,6 +85,9 @@ Player player2('B')
 3. 在单线程模型/单元测试下，可以在CDiceGamePlatform中静态的预置一些CGameTable，用户选择加入游戏，当num_player%2==0时，游戏开始，请player1（单线程也区分不开两个用户了orz）选择游戏策略，然后游戏继续进行。
 4. 按照题目的情景，其实类似一个C-S模式，涉及到多线程编程，Server端一个CDiceGamePlatform单件常启动，设置服务；客户端CPlayer调用相关服务，显示信息。
 
-### 目前的状态：
+### 流程思路：
 
-1. 开发完成，没测试，没debug，没写UnitTest
+1. (服务器)main函数首先创建一个DiceGamePlatform单件，这个单件预注册了两个player A、B。然后main函数里创建了两个player，向DiceGamePlatform中发送消息，登录这两个player.
+
+2. 登录操作会为player寻找合适的GameTable，找不到则放入onlineplayers中，找到了就入桌，桌子上如果有两个人则开始游戏
+

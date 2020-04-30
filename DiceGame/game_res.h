@@ -5,7 +5,7 @@
 class CGameRes
 {
 public:
-	enum EGameResult{ WIN,LOSE,DRAW };
+	enum class EGameResult{ WIN,LOSE,DRAW };
 private:
 	EGameResult m_result;
 	unsigned res_player1,res_player2;
@@ -15,10 +15,10 @@ public:
 		res_player1=res1;
 		res_player2=res2;
 		if(res1>res2)
-			m_result=WIN;
+			m_result= EGameResult::WIN;
 		else  if(res1<res2)
-			m_result=LOSE;
-		else m_result=DRAW;
+			m_result= EGameResult::LOSE;
+		else m_result= EGameResult::DRAW;
 		return *this;
 	}
 

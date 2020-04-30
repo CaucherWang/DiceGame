@@ -4,13 +4,15 @@
 #include "player.h"
 #include "strategy.h"
 #include "game_res.h"
+#include <memory>
 
 
 class CGameTable
 {
+public:
+	enum class ETableState{CLOSED,WAITING,PLAYING};
 private:
-	shared_ptr<CPlayer>m_player1, m_player2;
-	enum ETableState{CLOSED,WAITING,PLAYING};
+	CPlayer*m_player1, *m_player2;
 	ETableState m_table_state;
 	unsigned m_game_round;	// indicate how many times dices have been rolled during a round
 	unsigned m_round;
@@ -18,10 +20,6 @@ private:
 	IGameStrategy *m_game_strategy;
 
 protected:
-	virtual ~CGameTable()
-	{
-		delete m_game_strategy;
-	}
 	unsigned inputStrategy() const;
 	void setStrategy();
 	char inputCommand() const;
@@ -34,9 +32,12 @@ protected:
 	void dealFinal();
 
 public:
-	CGameTable() { m_player1 = m_player2 = nullptr; m_table_state = CLOSED; m_game_round=0; m_round=0; m_game_strategy=nullptr;}
-
-	bool joinTable(shared_ptr<CPlayer>player);
+	CGameTable() { m_player1 = m_player2 = nullptr; m_table_state = ETableState::CLOSED; m_game_round=0; m_round=0; m_game_strategy=nullptr;}
+	virtual ~CGameTable()
+	{
+		delete m_game_strategy;
+	}
+	bool joinTable(CPlayer *player);
 
 	void startGame();
 	

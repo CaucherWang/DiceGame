@@ -42,7 +42,7 @@ public:
 	static void printStrategy()
 	{
 		string s="There are 2 built-in strategies to choose.\n 0: Roll dice twice. Compare the remainder of 6 after sum the dice result up."
-		"\n1:Roll dice twice. Compare the remainder of 6 after multiplying the dice result.\n"
+		"\n 1:Roll dice twice. Compare the remainder of 6 after multiplying the dice result.\n"
 		"Please input 0/1 for selection.";
 		printAtom(s);
 	}
@@ -63,14 +63,14 @@ public:
 	{
 		switch (result.getRes())
 			{
-			case CGameRes::WIN:
+			case CGameRes::EGameResult::WIN:
 				printWin(player1,player2,round, result.getPlayer1Res(),result.getPlayer2Res());
 				break;
-			case CGameRes::LOSE:
+			case CGameRes::EGameResult::LOSE:
 				printWin(player2,player1,round,result.getPlayer2Res(),result.getPlayer1Res());
 				break;
-			case CGameRes::DRAW:
-				printDraw(round,result.getRes());
+			case CGameRes::EGameResult::DRAW:
+				printDraw(round,result.getPlayer1Res());
 				break;
 			}
 	}
