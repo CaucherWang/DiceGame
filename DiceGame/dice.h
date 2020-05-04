@@ -8,27 +8,45 @@ static unsigned int randomNum(int x)
 	return rand()%x+1;
 }
 
-class CDice
+class Dice
 {
-private:
-	unsigned int m_upVal;
+protected:
+	unsigned int upVal;
 
 public:
-	CDice() :m_upVal(0){};
-	unsigned rollDice()
+	Dice() :upVal(0){};
+	virtual unsigned rollDice()
 	{
-		m_upVal = randomNum(6) + 1;
-		return m_upVal;
+		upVal = randomNum(6);
+		return upVal;
 	}
 	unsigned getVal()const
 	{
-		return m_upVal;
+		return upVal;
 	}
 	void reset()
 	{
-		m_upVal = 0;
+		upVal = 0;
 	}
 };
 
+// for test
+class TestDice:public Dice
+{
+	unsigned rolledNum,myNum;
+	static unsigned testNum;
+	unsigned mockRollDice()const
+	{
+		return (3+2*rolledNum+4*myNum)%6 +1;
+	}
+public:
+	TestDice():rolledNum(0){++testNum;myNum=testNum;}
+	virtual unsigned rollDice() override
+	{
+		++rolledNum;
+		upVal = mockRollDice();
+		return upVal;
+	}
+};
 
 #endif

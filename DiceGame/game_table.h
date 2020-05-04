@@ -4,43 +4,43 @@
 #include "player.h"
 #include "strategy.h"
 #include "game_res.h"
-#include <memory>
 
-
-class CGameTable
+class GameTable
 {
+	friend class StartCommand;
+	friend class RollCommand;
+	friend class QuitCommand;
+	friend class CommandFactory;
 public:
 	enum class ETableState{CLOSED,WAITING,PLAYING};
+	static vector<GameRes>last_game_his_res;	//only for test
 private:
-	CPlayer*m_player1, *m_player2;
-	ETableState m_table_state;
-	unsigned m_game_round;	// indicate how many times dices have been rolled during a round
-	unsigned m_round;
-	vector<CGameRes>m_history_result;
-	IGameStrategy *m_game_strategy;
+	Player*player1, *player2;
+	ETableState table_state;
+	unsigned game_round;	// indicate how many times dices have been rolled during a round
+	unsigned round;
+	vector<GameRes>history_result;
+	IGameStrategy *game_strategy;
 
 protected:
 	unsigned inputStrategy() const;
-	void setStrategy();
-	char inputCommand() const;
-	char inputRoundCommand()const;
-	void refreshTable();
-	bool dealCommand(const char command);
-	void rollDices(unsigned *res_1, unsigned *res_2);
-	bool showResult(unsigned res_1,unsigned res_2,unsigned round);
-	void showHisResult()const;
-	void dealFinal();
+	void setStrategy(int strategy);
 
 public:
-	CGameTable() { m_player1 = m_player2 = nullptr; m_table_state = ETableState::CLOSED; m_game_round=0; m_round=0; m_game_strategy=nullptr;}
-	virtual ~CGameTable()
+	GameTable() {player1 = player2 = nullptr; table_state = ETableState::CLOSED; game_round=0; round=0; game_strategy=nullptr;}
+	virtual ~GameTable()
 	{
-		delete m_game_strategy;
+		delete game_strategy;
 	}
-	bool joinTable(CPlayer *player);
+	bool joinTable(Player *player, int strategy=-1);
 
-	void startGame();
-	
+	void startGame(int strategy=-1);
+
+	// for test
+	const vector<GameRes>& getHisRes()const
+	{
+		return history_result;
+	}
 };
 
 #endif // !GAME_TABLE_H
