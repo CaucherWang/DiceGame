@@ -4,20 +4,33 @@
 #include "dice.h"
 #include <vector>
 #include <string>
+#include <memory>
 using namespace std;
 
-class CPlayer
+class Player
 {
 public:
-	enum class ESessionState { OFFLINE, ONLINE, PREPARED, PLAYING };
+	enum class ESessionState { OFFLINE, ONLINE, PLAYING };
 private:	
 	static unsigned undefined_name_num;		//TODO: need to ensure thread security
 	static const unsigned DiceNum;
-	vector<CDice>m_dices;
-	char m_curCommand;
+	vector<shared_ptr<Dice>>dices;
 	ESessionState sessionState;
+	void initDice(bool test_flag=false)
+	{
+		if(test_flag)
+		{
+			dices.emplace_back(new TestDice);
+			dices.emplace_back(new TestDice);
+		}
+		else
+		{
+			dices.emplace_back(new Dice);
+			dices.emplace_back(new Dice);
+		}
+	}
 protected:
-	string m_name;
+	string name;
 
 	// TODO: thread security ensure 
 	unsigned getUndefinedNum()const
@@ -29,23 +42,30 @@ protected:
 		++undefined_name_num;
 	}
 public:
-	CPlayer() : m_dices(DiceNum), m_curCommand(0), sessionState(ESessionState::OFFLINE)
+	Player() : sessionState(ESessionState::OFFLINE)
 	{
-		m_name = "undefined name" + to_string(getUndefinedNum());
+		initDice();
+		name = "undefined name" + to_string(getUndefinedNum());
 		IncUndefinedNum();
 	};
-	CPlayer(string& _name) :m_dices(DiceNum), m_curCommand(0), sessionState(ESessionState::OFFLINE), m_name(_name) { ; }
-	CPlayer(const char *_name) :m_dices(DiceNum), m_curCommand(0), sessionState(ESessionState::OFFLINE), m_name(_name){;}
+	Player(string& _name, bool test_flag=false) :sessionState(ESessionState::OFFLINE), name(_name)
+	{
+		initDice(test_flag);
+	}
+	Player(const char *_name, bool test_flag=false) :sessionState(ESessionState::OFFLINE), name(_name)
+	{
+		initDice(test_flag);
+	}
 
 	string getName()const
 	{
-		return m_name;
+		return name;
 	}
 
-	const vector<CDice>& getDices()const { return m_dices; }
+	const vector<shared_ptr<Dice>>& getDices()const { return dices; }
 
 	void initialize() {
-		for (auto dice : m_dices)
+		for (auto dice : dices)
 			dice.reset();
 	}
 
@@ -59,27 +79,24 @@ public:
 		return sessionState;
 	}
 
-	unsigned rollDice(unsigned round);
-
-	bool operator==(const CPlayer& another_player)const
+	ESessionState getState()const
 	{
-		return this->m_name == another_player.m_name;
+		return sessionState;
 	}
 
-	bool operator<(const CPlayer& another_player)const
+	unsigned rollDice(unsigned round);
+
+	bool operator==(const Player& another_player)const
 	{
-		return m_name<another_player.getName();
+		return this->name == another_player.name;
+	}
+
+	bool operator<(const Player& another_player)const
+	{
+		return name<another_player.getName();
 	}
 	
 };
-
-
-
-
-
-
-
-
 
 
 #endif

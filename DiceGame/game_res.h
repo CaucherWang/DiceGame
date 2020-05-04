@@ -2,7 +2,7 @@
 #ifndef GAME_RES_H
 #define GAME_RES_H
 
-class CGameRes
+class GameRes
 {
 public:
 	enum class EGameResult{ WIN,LOSE,DRAW };
@@ -10,7 +10,7 @@ private:
 	EGameResult m_result;
 	unsigned res_player1,res_player2;
 public:
-	CGameRes& setRes(unsigned res1, unsigned res2)
+	GameRes& setRes(unsigned res1, unsigned res2)
 	{
 		res_player1=res1;
 		res_player2=res2;

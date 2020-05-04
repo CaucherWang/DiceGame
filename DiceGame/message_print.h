@@ -11,7 +11,7 @@ using std::cout;
 class CMessagePrint
 {
 private:
-	static void printAtom(string s)
+	static void printAtom(const string& s)
 	{
 		cout<<s<<endl<<endl;
 	}
@@ -54,27 +54,32 @@ public:
 	{
 		printAtom("Please input your command('r' to roll the dice ,'q' to quit)");
 	}
+	static void printErrInput(char input)
+	{
+		string in=&input;
+		printAtom("Your input "+in+" is invalid, please input again.");
+	}
 	static void printDiceRes(const string &player1, const string &player2, const unsigned res_1, const unsigned res_2)
 	{
-		string s="The dices displace that:\n "+player1+"'s dice shows "+to_string(res_1)+", "+player2+"'s dice shows "+to_string(res_2);
+		string s="The dices display that:\n "+player1+"'s dice shows "+to_string(res_1)+", "+player2+"'s dice shows "+to_string(res_2);
 		printAtom(s);
 	}
-	static void printRes(const CGameRes& result, const string& player1, const string& player2, unsigned round=0)
+	static void printRes(const GameRes& result, const string& player1, const string& player2, unsigned round=0)
 	{
 		switch (result.getRes())
 			{
-			case CGameRes::EGameResult::WIN:
+			case GameRes::EGameResult::WIN:
 				printWin(player1,player2,round, result.getPlayer1Res(),result.getPlayer2Res());
 				break;
-			case CGameRes::EGameResult::LOSE:
+			case GameRes::EGameResult::LOSE:
 				printWin(player2,player1,round,result.getPlayer2Res(),result.getPlayer1Res());
 				break;
-			case CGameRes::EGameResult::DRAW:
+			case GameRes::EGameResult::DRAW:
 				printDraw(round,result.getPlayer1Res());
 				break;
 			}
 	}
-	static void printHisRes(const vector<CGameRes> &results,const string &player1, const string &player2)
+	static void printHisRes(const vector<GameRes> &results,const string &player1, const string &player2)
 	{
 		for(unsigned round=0;round<results.size();++round)
 		{

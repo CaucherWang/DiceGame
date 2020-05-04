@@ -4,30 +4,30 @@
 
 #include "player.h"
 #include "game_res.h"
-#include <memory>
 
 
 class IGameStrategy
 {
 protected:
-	virtual unsigned calCredit(const CPlayer& player) = 0;
+	virtual unsigned calCredit(const Player& player) = 0;
 public:
 	// WIN for player1 win...
-	virtual shared_ptr<CGameRes> judge(CPlayer& player1, CPlayer& player2) = 0;
+	virtual shared_ptr<GameRes> judge(Player& player1, Player& player2) = 0;
+	virtual ~IGameStrategy(){;}
 };
 
 class CAddRemaind6:public IGameStrategy
 {
 public:
-	virtual unsigned calCredit(const CPlayer& player) override;
-	virtual shared_ptr<CGameRes> judge(CPlayer& player1, CPlayer& player2) override;
+	virtual unsigned calCredit(const Player& player) override;
+	virtual shared_ptr<GameRes> judge(Player& player1, Player& player2) override;
 };
 
 class CMutRemaind6:public IGameStrategy
 {
 public:
-	virtual unsigned calCredit(const CPlayer& player) override;
-	virtual shared_ptr<CGameRes> judge(CPlayer& player1, CPlayer& player2) override;
+	virtual unsigned calCredit(const Player& player) override;
+	virtual shared_ptr<GameRes> judge(Player& player1, Player& player2) override;
 };
 
 
