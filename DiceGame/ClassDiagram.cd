@@ -29,63 +29,63 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CommandFactory" Collapsed="true">
-    <Position X="0.5" Y="6.5" Width="1.5" />
+    <Position X="7.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAACAAAEAAAQAAAAAAAEgAAABAAEAAAAAAAAA=</HashCode>
       <FileName>command.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TestCommandFactory" Collapsed="true">
-    <Position X="0.5" Y="7.75" Width="1.5" />
+    <Position X="7.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAAAAAAIIAAAAAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>command.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Dice" Collapsed="true">
-    <Position X="5.5" Y="3.5" Width="1.5" />
+    <Position X="4.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAEAAAAAAAAAAACAABAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>dice.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TestDice" Collapsed="true">
-    <Position X="5.5" Y="4.75" Width="1.5" />
+    <Position X="4.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAKAAAAACAAAAAAAAAAQAAAAAAAAAAAI=</HashCode>
       <FileName>dice.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DiceGamePlatform" Collapsed="true">
-    <Position X="9.75" Y="0.5" Width="1.5" />
+    <Position X="8.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACIAACAAAAAkAgAAAAAQAEAAQAMAAAAgAAEAA=</HashCode>
       <FileName>dice_game_platform.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameRes" Collapsed="true">
-    <Position X="11.5" Y="0.5" Width="1.5" />
+    <Position X="10.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAJAAAAAgAEAAAAAAIAAAAABAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>game_res.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameTable" Collapsed="true">
-    <Position X="8" Y="1.5" Width="1.5" />
+    <Position X="7" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>wAAAAAAAAAAAAQAAACgAAAgAAAABgBAEAoAFAAAEAAA=</HashCode>
       <FileName>game_table.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CMessagePrint" Collapsed="true">
-    <Position X="8" Y="0.5" Width="1.5" />
+    <Position X="7" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAIAAAIAAAgAQAAAQAIAAAAAAYAQACAAAAAAAAAIAA=</HashCode>
       <FileName>message_print.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Player" Collapsed="true">
-    <Position X="9.75" Y="1.5" Width="1.5" />
+    <Position X="8.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAgAAAIAQAAAAAAAAECASAEAAAGIAAAIAAkAQAgAAA=</HashCode>
       <FileName>player.h</FileName>
