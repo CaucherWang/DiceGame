@@ -15,30 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="dice_game.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="strategy.cpp">
+    <ClCompile Include="DiceGameTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dice_game.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="dice.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="strategy.h">
+    <ClInclude Include="pch.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

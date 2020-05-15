@@ -2,53 +2,101 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "dice.h"
-#include <iostream>
 #include <vector>
+#include <string>
+#include <memory>
 using namespace std;
 
-class CPlayer
+class Player
 {
-private:
-	static const unsigned WinVal;
+public:
+	enum class ESessionState { OFFLINE, ONLINE, PLAYING };
+private:	
+	static unsigned undefined_name_num;		//TODO: need to ensure thread security
 	static const unsigned DiceNum;
-	vector<CDice>m_dices;
-	bool m_isFinished, m_isWon;
-	unsigned m_turn_round;
-	char m_curCommand;
+	vector<shared_ptr<Dice>>dices;
+	ESessionState sessionState;
+	void initDice(bool test_flag=false)
+	{
+		if(test_flag)
+		{
+			dices.emplace_back(new TestDice);
+			dices.emplace_back(new TestDice);
+		}
+		else
+		{
+			dices.emplace_back(new Dice);
+			dices.emplace_back(new Dice);
+		}
+	}
 protected:
-	char inputCommand();
-	void printWelcome() {
-		cout << "Let's start playing games!" << endl << endl;
+	string name;
+
+	// TODO: thread security ensure 
+	unsigned getUndefinedNum()const
+	{
+		return undefined_name_num;
 	}
-	void printBye() {
-		cout << "BYE-BYE!" << endl << endl;
+	static void IncUndefinedNum()
+	{
+		++undefined_name_num;
 	}
+public:
+	Player() : sessionState(ESessionState::OFFLINE)
+	{
+		initDice();
+		name = "undefined name" + to_string(getUndefinedNum());
+		IncUndefinedNum();
+	};
+	Player(string& _name, bool test_flag=false) :sessionState(ESessionState::OFFLINE), name(_name)
+	{
+		initDice(test_flag);
+	}
+	Player(const char *_name, bool test_flag=false) :sessionState(ESessionState::OFFLINE), name(_name)
+	{
+		initDice(test_flag);
+	}
+
+	string getName()const
+	{
+		return name;
+	}
+
+	const vector<shared_ptr<Dice>>& getDices()const { return dices; }
+
 	void initialize() {
-		m_turn_round = m_isFinished = m_isWon = 0;
-		for (auto dice : m_dices)
+		for (auto dice : dices)
 			dice.reset();
 	}
-	void judge(const unsigned sum) {
-		m_isWon = (sum == WinVal) ? true : false;
+
+	ESessionState signUp()
+	{
+		if(sessionState == ESessionState::OFFLINE || sessionState == ESessionState::ONLINE)
+		{
+			sessionState = ESessionState::ONLINE;
+			return ESessionState::ONLINE;
+		}
+		return sessionState;
 	}
-	void rollDice();
-	void playCommand(const char command);
-	void showResult();
-	void showFinal(unsigned sum);
-	char getCurrentCommand() const { return m_curCommand; }
-public:
-	CPlayer() : m_dices(DiceNum), m_isFinished(false), m_isWon(false),m_turn_round(0) ,m_curCommand(0){};
-	void playGame();
+
+	ESessionState getState()const
+	{
+		return sessionState;
+	}
+
+	unsigned rollDice(unsigned round);
+
+	bool operator==(const Player& another_player)const
+	{
+		return this->name == another_player.name;
+	}
+
+	bool operator<(const Player& another_player)const
+	{
+		return name<another_player.getName();
+	}
 	
 };
-
-
-
-
-
-
-
-
 
 
 #endif

@@ -1,40 +1,36 @@
 #include "strategy.h"
 
-EGameResult CAddRemaind6::judge(CPlayer& player1, CPlayer& player2)
+shared_ptr<GameRes> CAddRemaind6::judge(Player& player1, Player& player2)
 {
 	unsigned res_player1 = calCredit(player1), res_player2 = calCredit(player2);
-	if (res_player1 < res_player2)
-		return LOST;
-	if (res_player1 > res_player2)
-		return WIN;
-	return DRAW;
+	shared_ptr<GameRes>res(new GameRes);
+	res->setRes(res_player1,res_player2);
+	return res;
 }
 
-EGameResult CMutRemaind6::judge(CPlayer& player1, CPlayer& player2)
+shared_ptr<GameRes> CMutRemaind6::judge(Player& player1, Player& player2)
 {
 	unsigned res_player1 = calCredit(player1), res_player2 = calCredit(player2);
-	if (res_player1 < res_player2)
-		return LOST;
-	if (res_player1 > res_player2)
-		return WIN;
-	return DRAW;
+	shared_ptr<GameRes>res(new GameRes);
+	res->setRes(res_player1,res_player2);
+	return res;
 }
 
-unsigned CAddRemaind6::calCredit(const CPlayer& player)
+unsigned CAddRemaind6::calCredit(const Player& player)
 {
 	unsigned sum = 0;
-	vector<CDice>dices = player.getDices();
+	vector<shared_ptr<Dice>>dices = player.getDices();
 	for (auto dice : dices)
-		sum += dice.getVal();
+		sum += dice->getVal();
 	return sum % 6;
 }
 
-unsigned CMutRemaind6::calCredit(const CPlayer& player)
+unsigned CMutRemaind6::calCredit(const Player& player)
 {
 	unsigned res = 1;
-	vector<CDice>dices = player.getDices();
+	vector<shared_ptr<Dice>>dices = player.getDices();
 	for (auto dice : dices)
-		res *= dice.getVal();
+		res *= dice->getVal();
 	return res % 6;
 }
 

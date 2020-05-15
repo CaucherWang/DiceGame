@@ -1,7 +1,9 @@
-#include "dice_game.h"
+#include "dice_game_platform.h"
 
 int main()
 {
-	auto game = CDiceGame();
-	game.startGame();
+	auto platform = DiceGamePlatform::getInstance();
+	Player player_A("A"), player_B("B");
+	platform->login(player_A);
+	platform->login(player_B);
 }
