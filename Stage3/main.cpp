@@ -8,7 +8,6 @@ int main(int argc, const char * argv[]) {
     auto platform = DiceGamePlatform::getInstance();
     srand(time(nullptr));
     const Dice dice;
-    platform->registerPhase();
-    platform->gamePhase(dice);
+    platform->start(dice);
     return 0;
 }

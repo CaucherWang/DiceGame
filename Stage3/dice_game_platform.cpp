@@ -14,6 +14,18 @@ DiceGamePlatform* DiceGamePlatform::singleInstance = new DiceGamePlatform();
 
 DiceGamePlatform::DiceGamePlatform()
 {
+    isEnd = false;
+}
+
+void DiceGamePlatform::start(const Dice &dice){
+    do{
+        registerPhase();
+        gamePhase(dice);
+        unsigned quit;
+        cout << "Do you want to close the system? 1.Yes, 2. No."<<endl;
+        cin>>quit;
+        isEnd = quit == 1;
+    }while (!isEnd);
 }
 
 void DiceGamePlatform::registerPhase(){
