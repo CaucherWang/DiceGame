@@ -31,5 +31,12 @@ public:
 };
 
 
+class CAverage:public IGameStrategy
+{
+public:
+    virtual unsigned calCredit(const Player& player) override;
+    virtual shared_ptr<GameRes> judge(Player& player1, Player& player2) override;
+};
+
 #endif // !STRATEGY_H
 

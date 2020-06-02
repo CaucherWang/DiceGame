@@ -1,0 +1,38 @@
+//
+//  dice_game_platform.h
+//  mdice
+//
+//  Created by apple on 2020/6/1.
+//  Copyright © 2020年 Ru Wang. All rights reserved.
+//
+
+#ifndef dice_game_platform_h
+#define dice_game_platform_h
+
+#include <stdio.h>
+#include <vector>
+#include <list>
+#include "User.h"
+#include "Dice.h"
+#include "GameSession.h"
+#include "IStrategy.h"
+class DiceGamePlatform{
+private:
+    static DiceGamePlatform* singleInstance;
+    vector<shared_ptr<User>> users;
+    list<shared_ptr<GameSession>> gameSessions;
+    static const unsigned sessionNum = 10;
+protected:
+    DiceGamePlatform();
+public:
+    static DiceGamePlatform* getInstance()
+    {
+        return singleInstance;
+    }
+    void registerPhase();
+    void registerUser();
+    void gamePhase(const Dice& dice);
+    void startSession(const Dice& dice);
+    IStrategy* getStrategy(unsigned index);
+};
+#endif /* dice_game_platform_h */
