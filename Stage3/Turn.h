@@ -1,11 +1,3 @@
-//
-//  Turn.h
-//  mdice
-//
-//  Created by apple on 2020/6/1.
-//  Copyright © 2020年 Ru Wang. All rights reserved.
-//
-
 #ifndef Turn_h
 #define Turn_h
 

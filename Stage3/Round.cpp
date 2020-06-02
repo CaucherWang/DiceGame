@@ -1,11 +1,3 @@
-//
-//  Round.cpp
-//  mdice
-//
-//  Created by apple on 2020/6/1.
-//  Copyright © 2020年 Ru Wang. All rights reserved.
-//
-
 #include "Round.h"
 Round::Round(unsigned roundIndex, vector<shared_ptr<Player>> players):
 roundIndex(roundIndex),winners(){
@@ -15,9 +7,6 @@ roundIndex(roundIndex),winners(){
         pointsBet++;
     }
 }
-/*第 1 轮：玩家 alice, bob 瓜分 15 点积分；
- 第 2 轮：玩家 alice, carl 瓜分 12 点积分；
- 当前各玩家积分余额： alice 7, bob 1, carl 2*/
 void Round::printRoundResult(){
     if(!winners.empty()){
         cout << "Round "<<roundIndex<<": Player ";

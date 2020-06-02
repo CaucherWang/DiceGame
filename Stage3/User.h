@@ -1,10 +1,3 @@
-//
-//  User.h
-//  mdice
-//
-//  Created by apple on 2020/6/1.
-//  Copyright © 2020年 Ru Wang. All rights reserved.
-//
 
 #ifndef User_h
 #define User_h
@@ -18,8 +11,6 @@ using namespace std;
 enum event {REGISTER, BETTING, BUYPOINTS, WINGAME};
 
 struct CreditRecord{
-    //ltm = localtime(&now)
-    //tm_year, tm_mom, tm_hour, tm_min, tm_sec
     tm *localTime;
     event eventName;
     int creditChange;

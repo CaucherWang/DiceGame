@@ -1,10 +1,3 @@
-//
-//  dice_game_platform.h
-//  mdice
-//
-//  Created by apple on 2020/6/1.
-//  Copyright © 2020年 Ru Wang. All rights reserved.
-//
 
 #ifndef dice_game_platform_h
 #define dice_game_platform_h
