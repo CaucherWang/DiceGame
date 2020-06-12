@@ -21,7 +21,7 @@ unsigned Turn::modifyPoints(){
             cout << "Failed to buy."<<endl;
         }else{
             points += p;
-            player->changeCredits(-p * 2, BUYPOINTS);
+            player->changeCredits(-2*int(p), BUYPOINTS);
             cout << "Your points in this turn after buying is "<<points<<endl;
         }
     }
