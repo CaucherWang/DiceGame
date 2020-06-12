@@ -16,22 +16,23 @@ struct CreditRecord{
     int creditChange;
     void setTime(){
         time_t now = time(0);
-        localTime = localtime(&now);
+    	localTime = new tm();
+        localtime_s(localTime,&now);
     }
     void printRecord(){
         cout<<localTime->tm_year + 1900<<"/"<<localTime->tm_mon + 1<<"/"<<localTime->tm_mday<<" "<<localTime->tm_hour<<":"<<localTime->tm_min<<":"<<localTime->tm_sec<<" ";
         switch(eventName){
                 case REGISTER:
-                cout<<"注册"<<" ";
+        		printf("注册 ");
                 break;
             case BETTING:
-                cout<<"下注"<<" ";
+        		printf("下注 ");
                 break;
             case BUYPOINTS:
-                cout<<"购买点数"<<" ";
+                printf("购买点数 ");
                 break;
             case WINGAME:
-                cout<<"赢得游戏"<<" ";
+        		printf("赢得游戏 ");
                 break;
         }
         if(creditChange > 0){
@@ -55,7 +56,7 @@ public:
     bool hasOneCredit(){
         return credits >= 1;
     }    
-    void changeCredits(int c, event e);
+    void changeCredits(int credit, event e);
     
     int getCredits(){return credits;}
     void printCreditRecords();

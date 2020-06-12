@@ -3,10 +3,10 @@ Round::Round(unsigned roundIndex, vector<shared_ptr<Player>> players):
 roundIndex(roundIndex),winners(){
     pointsBet = 0;
     for(auto player: players){
-        turns.push_back(new Turn(player));
-        pointsBet++;
+        turns.push_back(new Turn(player,this));
     }
 }
+
 void Round::printRoundResult(){
     if(!winners.empty()){
         cout << "Round "<<roundIndex<<": Player ";
@@ -16,7 +16,6 @@ void Round::printRoundResult(){
         cout<<winners.back()<<" divided up "<<pointsBet<<" points;"<<endl;
     }
 }
-
 
 void Round::finish(){
     //divide credits
@@ -39,7 +38,7 @@ void Round::finish(){
     for (auto turn:turns) {
         p = turn->getPoints();
         if (p == maxPoints) {
-            turn->getPlayer()->changeCredits(maxPoints/winNum, WINGAME);
+            turn->getPlayer()->changeCredits(pointsBet/(double)winNum, WINGAME);
         }
     }
 }

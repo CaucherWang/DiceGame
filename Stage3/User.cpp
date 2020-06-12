@@ -7,11 +7,11 @@ void User::printCreditRecords(){
     }
 }
 
-void User::changeCredits(int c, event e){
+void User::changeCredits(int credit, event e){
     auto p = make_shared<CreditRecord>();
     p->eventName = e;
     p->setTime();
-    p->creditChange = c;
+    p->creditChange = credit;
     creditRecords.push_back(p);
-    credits += c;
+    credits += credit;
 }

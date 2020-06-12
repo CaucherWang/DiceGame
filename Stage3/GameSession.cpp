@@ -96,7 +96,4 @@ unsigned GameSession::playMove(Turn *turn, unsigned int move){
 
 void GameSession::startRound(unsigned index, vector<shared_ptr<Player>>& players){
     rounds.push_back(make_shared<Round>(index, players));
-    for(auto player:players){
-        player->changeCredits(-1, BETTING);
-    }
 }

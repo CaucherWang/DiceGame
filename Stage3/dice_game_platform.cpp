@@ -24,7 +24,7 @@ void DiceGamePlatform::start(const Dice &dice){
 void DiceGamePlatform::registerPhase(){
     unsigned choice = 1;
     while (choice != 2) {
-        cout<<"Please Choose: 1. Register a new account，2. End registration. "<<endl;
+        cout<<"Please Choose: 1. Register a new account, 2. End registration. "<<endl;
         cin>>choice;
         if (choice == 1) {
             registerUser();
@@ -44,7 +44,7 @@ void DiceGamePlatform::gamePhase(const Dice& dice){
     //请选择 1.开始一盘新游戏，2. 结束
     unsigned choice = 1;
     while(choice != 2){
-        cout<<"Please Choose: 1.Start a new game，2. Quit"<<endl;
+        cout<<"Please Choose: 1.Start a new game, 2. Quit"<<endl;
         cin>>choice;
         if(choice == 1){
             startSession(dice);

@@ -6,8 +6,6 @@ unsigned Turn::setPoints(unsigned int p1, unsigned int p2){
     points = player->calPoints(p1, p2);
     return points;
 }
-    
-    
 
 unsigned Turn::modifyPoints(){
     unsigned choice = 2;
@@ -21,7 +19,7 @@ unsigned Turn::modifyPoints(){
             cout << "Failed to buy."<<endl;
         }else{
             points += p;
-            player->changeCredits(-p * 2, BUYPOINTS);
+        	notify(2*int(p),BUYPOINTS);
             cout << "Your points in this turn after buying is "<<points<<endl;
         }
     }

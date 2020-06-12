@@ -157,6 +157,7 @@
     <ClInclude Include="..\..\Stage3\Round.h" />
     <ClInclude Include="..\..\Stage3\Turn.h" />
     <ClInclude Include="..\..\Stage3\User.h" />
+    <ClInclude Include="IUpdatePoints.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

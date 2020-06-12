@@ -1,10 +1,11 @@
 #ifndef Player_h
 #define Player_h
 
-#include <stdio.h>
 #include "IStrategy.h"
 #include "User.h"
-class Player{
+#include "../Final/Project1/IUpdatePoints.h"
+
+class Player:public IUpdatePoints{
     shared_ptr<User> user;
     IStrategy* strategy;
 public:
@@ -15,5 +16,6 @@ public:
     string getName();
     unsigned calPoints(unsigned p1, unsigned p2);
     void printCreditRecords(){user->printCreditRecords();}
+	virtual void updatePoints(double credit, event name) override{changeCredits(-credit,name);}
 };
 #endif /* Player_h */
