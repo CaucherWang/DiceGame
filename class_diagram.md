@@ -2,129 +2,125 @@
 @startuml
 class DiceGamePlatform
 {
--{static} DiceGamePlatform* singleInstance
-- static const unsigned TableNum;
-- list<shared_ptr<GameTable>>gameTables;
-- set<Player>players;
-- queue<Player*>onlinePlayers;
-+ shared_ptr<GameTable> login(const Player&,int strategy)
-+ iterator trySeat(Player* player, int strategy)
+-{static} DiceGamePlatform instance
+- bool isEnd
++{static} getInstance()
++ registerPhase();
++ registerUser();
++ start(Dice dice);
++ gamePhase(Dice dice);
++ startSession(Dice dice);
++ getStrategy(int index);
 }
-Interface Strategy
+DiceGamePlatform ..> Dice
+GameSession ..> Dice
+DiceGamePlatform "users" o--> "*" User
+DiceGamePlatform "gameSessions" o--> "*" GameSession
+
+class User
 {
-+{abstract} unsigned calCredit(const Player&)
-+{abstract} shared_ptr<GameRes> judge(Player&,Player&)
-}
-CAddRemain6..|>Strategy
-CMutRemain6..|>Strategy
-class CommandFactory
-{
-# GameTable& game_table;
-# shared_ptr<StartCommand>start_command;
-# shared_ptr<RollCommand>roll_command;
-# shared_ptr<QuitCommand>quit_command;
-# shared_ptr<Command> findCommand(char input);
-# bool duringRound;
+- string name;
+- int credits;
++ getName();
++ hasOneCredit();
++ changeCredits(int credit, event e);  
++ getCredits();
++ printCreditRecords();
 }
 
-Interface Command
+User "creditRecords" o--> "*" CreditRecord
+
+class CreditRecord
 {
-#   GameTable& game_table
-+   Command(GameTable&)
-+   void execute()
-}
-class StartCommand
-{
+- Time localTime;
+- event eventName;
+- int creditChange;
++ printRecord()
 }
 
-class RollCommand
+Interface IStrategy
 {
-- void rollDices(int*,int*)
-- bool showResult(int,int,int)
-- void dealFinal()
++{abstract} unsigned calculatePoints(int p1,int p2)
+}
+CAddRemain6..|>IStrategy
+CMutRemain6..|>IStrategy
+CAverage..|>IStrategy
+
+class GameSession
+{
+- vector players;
+- vector rounds;
+- Dice dice;
+- bool isEnd;
+- removePlayer();
++ GameSession(Dice dice);
++ accept(User user, IStrategy strategy);
++ isGameEnd();
++ play();
++ startRound(int index, vector players);
++ printRoundResults();
++ printCurrentCredits();
++ getPlayerNum()
++ playMove(Turn turn, unsigned move);
 }
 
-class QuitCommand
-{
-- void showHisResult()
-- void refreshTable()
-}
-class TestCommandFactory
-{
-+ shared_ptr<Command> getCommand() override
-}
-CommandFactory "1" o--> "1" StartCommand
-CommandFactory "1" o--> "1" RollCommand
-CommandFactory "1" o--> "1" QuitCommand
-CommandFactory --> "1" GameTable
-StartCommand..|>Command
-RollCommand..|>Command
-QuitCommand..|>Command
-TestCommandFactory..|>CommandFactory
-class GameRes
-{
-- EGameResult m_result
-- unsigned res_player1,res_player2
-+ GameRes& setRes(int,int)
-+ EGameResult getRes()
-}
+GameSession "players" o--> "*" Player
 
-class GameTable
-{
-- Player*player1, *player2
-- ETableState table_state
-- unsigned game_round
-- unsigned round;
-- vector<GameRes>history_result
-- IGameStrategy *game_strategy
-# unsigned inputStrategy()
-# void setStrategy(int strategy)
-+ bool joinTable(Player*,int strategy);
-+ void startGame(int strategy)
-}
 
 class Player
 {
-- string name
--{static} unsigned undefined_name_num
-- vector<shared_ptr<Dice>>dices
-- ESessionState sessionState
-- void initDice(bool test_flag=false)
-# unsigned getUndefinedNum()
-+ vector<shared_ptr<Dice>>& getDices()
-+ void initialize()
-+ ESessionState signUp()
-+ unsigned rollDice(unsigned round);
++ Player(User user, IStrategy strategy):
++ changeCredits(int points, event e);
++ getCredits()
++ getName();
++ calPoints(unsigned p1, unsigned p2);
++ printCreditRecords();
 }
+
+Player "user" *--> "1" User
+Player "strategy" o--> "1" IStrategy
 
 class Dice
 {
-# unsigned upVal;
-+ unsigned rollDice()
-+ unsigned getVal()
++{static} roll();
 }
 
-class TestDice
+interface IUpdatePoints
 {
-- unsigned mockRollDice()
++{abstract} updatePoints(double credit, event name)
 }
 
-class CMessagePrint
+class Round
 {
--{static} void printAtom(const string& s)
-+{static} void print...(...)
+- int roundIndex;
+- int pointsBet;
+- vector<string> winners;
++ Round(int index, vector players);
++ printRoundResult();
++ getCredits(unsigned c)
++ finish();
++ getTurns()
 }
+class Turn
+{
+- unsigned move;
+- unsigned points;
++ Turn(Player p, Round r):
++ getName()
++ setPoints
++ modifyPoints();
++ getCredits()
++ getPoints()
++ getPlayer()
++ printCreditRecords()
++ notify(double credit,event name）
+}
+Turn "listeners" o--> "*" IUpdatePoints
+Turn " "*-->"1" Player
+Round "turns 1" *--> "*" Turn
+Player..|>IUpdatePoints
+Round..|>IUpdatePoints
 
-Dice <|-- TestDice
-GameTable "1" o--> "2" Player
-Player "1" o--> "2" Dice
-DiceGamePlatform "1" o--> "*" Player
-DiceGamePlatform "1" *--> "*" GameTable
-GameTable "1" o--> "*" GameRes
-GameTable "1" o--> "*" Strategy
-Command ..> CMessagePrint
-GameTable ..> CMessagePrint
-Command "1" o--> "1" GameTable
 
 
 @enduml

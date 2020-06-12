@@ -31,7 +31,8 @@ void GameSession::play(){
             while (move != 1) {
                 cout<<turn->getName()<<" Choose your move: 1. roll 2 dices, 2. check your credits, 3. get credit records, 4. get previous round results;"<<endl;
                 cin>>move;
-                rounds.back()->getCredits(playMove(turn, move));
+                //rounds.back()->getCredits(playMove(turn, move));
+            	playMove(turn,move);
             }
         }
         rounds.back()->finish();

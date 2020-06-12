@@ -56,8 +56,7 @@ public:
     bool hasOneCredit(){
         return credits >= 1;
     }    
-    void changeCredits(int credit, event e);
-    
+    void changeCredits(int credit, event e);  
     int getCredits(){return credits;}
     void printCreditRecords();
 };

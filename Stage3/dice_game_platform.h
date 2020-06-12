@@ -1,8 +1,6 @@
 
 #ifndef dice_game_platform_h
 #define dice_game_platform_h
-
-#include <stdio.h>
 #include <vector>
 #include <list>
 #include "User.h"

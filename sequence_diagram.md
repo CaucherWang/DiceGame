@@ -18,9 +18,10 @@ alt joined users number <2
 DiceGamePlatform->Client:askRestartOrQuit()
 else
 DiceGamePlatform->GameSession:play()
-loop until somebody leaves gamesession
+loop until master leaves game or player's num < 2
 GameSession->Round:newRound(index,players)
 Round->Turn:new Turn(for each player)
+Turn->Turn:notify(1)
 Round->Player:changeCredit(-1 for each user of player)
 Round -->GameSession:turns
 loop all turn(player)
@@ -35,7 +36,7 @@ Turn->Client:askMorePoints()
 Client-->Turn:points
 Turn->Player:checkEnough(points)
 alt checkTrue
-Turn->Turn:notify(credits)
+Turn->Turn:notify(points)
 end
 
 else check credits
@@ -54,6 +55,9 @@ GameSession->Round:printRoundRes()
 GameSession->Player:printCredit()
 end
 end
+GameSession->Round:finish()
+Round->Player:changeCredits(winnedCredit)
+GameSession->GameSession:removePlayer()
 end
 end
 end
