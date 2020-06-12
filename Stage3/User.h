@@ -16,6 +16,7 @@ struct CreditRecord{
     int creditChange;
     void setTime(){
         time_t now = time(0);
+        localTime = new tm();
         localtime_r(&now, localTime);
     }
     void printRecord(){
