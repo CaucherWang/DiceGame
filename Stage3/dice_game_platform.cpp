@@ -1,5 +1,6 @@
 #include "dice_game_platform.h"
 #include <iostream>
+#include <cassert>
 using namespace std;
 DiceGamePlatform* DiceGamePlatform::singleInstance = new DiceGamePlatform();
 //const unsigned DiceGamePlatform::sessionNum = 10;
@@ -64,7 +65,7 @@ IStrategy* DiceGamePlatform::getStrategy(unsigned int index){
             newStrategy = new CAverage();
             break;
         default:
-            assert(newStrategy == nullptr);
+            //assert(newStrategy == nullptr);
             break;
     }
     return newStrategy;

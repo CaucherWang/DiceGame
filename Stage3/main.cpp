@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include "dice_game_platform.h"
 using namespace std;

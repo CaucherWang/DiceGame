@@ -1,0 +1,30 @@
+﻿  dice_game_platform.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\dice_game_platform.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\64451\Desktop\OOTPJ\Stage3\User.h(19,1): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : 参见“localtime”的声明
+  GameSession.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\User.h(19,1): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : 参见“localtime”的声明
+C:\Users\64451\Desktop\OOTPJ\Stage3\GameSession.cpp(55,23): warning C4018: “<”: 有符号/无符号不匹配
+  IStrategy.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\IStrategy.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  main.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\User.h(19,1): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : 参见“localtime”的声明
+C:\Users\64451\Desktop\OOTPJ\Stage3\main.cpp(6,15): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  Player.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\User.h(19,1): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : 参见“localtime”的声明
+  Round.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\User.h(19,1): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : 参见“localtime”的声明
+C:\Users\64451\Desktop\OOTPJ\Stage3\Round.cpp(13,27): warning C4018: “<”: 有符号/无符号不匹配
+  Turn.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\User.h(19,1): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : 参见“localtime”的声明
+C:\Users\64451\Desktop\OOTPJ\Stage3\Turn.cpp(20,38): warning C4018: “>”: 有符号/无符号不匹配
+C:\Users\64451\Desktop\OOTPJ\Stage3\Turn.cpp(24,38): error C4146: 一元负运算符应用于无符号类型，结果仍为无符号类型
+  User.cpp
+C:\Users\64451\Desktop\OOTPJ\Stage3\User.h(19,1): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : 参见“localtime”的声明
+  正在生成代码...

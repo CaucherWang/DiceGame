@@ -1,8 +1,7 @@
 ```plantuml
 @startuml
-[->DiceGamePlatform:regPlayer(player)
-[->DiceGamePlatform:login(player)
-DiceGamePlatform->GameTable:joinTable(player)
+[->DiceGamePlatform:start(dice)
+DiceGamePlatform->DiceGamePlatform:registerPhase()
 loop until table_state==CLOSED
 GameTable->CommandFactory:getCommand()
 CommandFactory-->GameTable:shared_ptr<Command>command
