@@ -17,7 +17,6 @@ private:
 public:
     Round(unsigned roundIndex, vector<shared_ptr<Player>> players);
     void printRoundResult();
-    void getCredits(unsigned c){pointsBet += c;}
     void finish();
     vector<Turn*>& getTurns(){
         return turns;

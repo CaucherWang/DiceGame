@@ -17,7 +17,7 @@ struct CreditRecord{
     void setTime(){
         time_t now = time(0);
     	localTime = new tm();
-        localtime_s(localTime,&now);
+        localtime_r(&now,localTime);
     }
     void printRecord(){
         cout<<localTime->tm_year + 1900<<"/"<<localTime->tm_mon + 1<<"/"<<localTime->tm_mday<<" "<<localTime->tm_hour<<":"<<localTime->tm_min<<":"<<localTime->tm_sec<<" ";

@@ -24,14 +24,14 @@ void GameSession::removePlayer(){
 void GameSession::play(){
     unsigned roundIndex = 0;
     while (!isEnd) {
-        startRound(++roundIndex,players);
+        startRound(++roundIndex);
         auto turns = rounds.back()->getTurns();
         for (auto turn: turns) {
             unsigned move = 2;
             while (move != 1) {
                 cout<<turn->getName()<<" Choose your move: 1. roll 2 dices, 2. check your credits, 3. get credit records, 4. get previous round results;"<<endl;
                 cin>>move;
-                rounds.back()->getCredits(playMove(turn, move));
+                playMove(turn, move);
             }
         }
         rounds.back()->finish();
@@ -94,6 +94,8 @@ unsigned GameSession::playMove(Turn *turn, unsigned int move){
 
 
 
-void GameSession::startRound(unsigned index, vector<shared_ptr<Player>>& players){
-    rounds.push_back(make_shared<Round>(index, players));
+shared_ptr<Round> GameSession::startRound(unsigned index){
+    shared_ptr<Round> r = make_shared<Round>(index, players);
+    rounds.push_back(r);
+    return r;
 }
