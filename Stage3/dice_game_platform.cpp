@@ -27,15 +27,19 @@ void DiceGamePlatform::registerPhase(){
         cout<<"Please Choose: 1. Register a new account, 2. End registration. "<<endl;
         cin>>choice;
         if (choice == 1) {
-            registerUser();
+            registerUser(getUserName());
         }
     }
 }
 
-void DiceGamePlatform::registerUser(){
+string DiceGamePlatform::getUserName(){
     string name;
     cout<<"Input your user name: ";
     cin>>name;
+    return name;
+}
+
+void DiceGamePlatform::registerUser(string name){
     users.push_back(make_shared<User>(name));
     users.back()->changeCredits(5, REGISTER);
 }
@@ -71,8 +75,18 @@ IStrategy* DiceGamePlatform::getStrategy(unsigned int index){
     return newStrategy;
 }
 
+
+void DiceGamePlatform::startAsession(const Dice& d){
+    gameSessions.push_back(make_shared<GameSession>(d));
+}
+
+void DiceGamePlatform::SessionAcceptUser(int index, IStrategy* s){
+    shared_ptr<User> u = users.at(index);
+    gameSessions.back()->accept(u, s);
+}
+
 void DiceGamePlatform::startSession(const Dice& dice){
-    gameSessions.push_back(make_shared<GameSession>(dice));
+    startAsession(dice);
     unsigned choice;
     unsigned playerNum = 0;
     for(auto user: users) {

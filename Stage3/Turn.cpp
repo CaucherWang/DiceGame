@@ -6,6 +6,16 @@ unsigned Turn::setPoints(unsigned int p1, unsigned int p2){
     points = player->calPoints(p1, p2);
     return points;
 }
+unsigned Turn::modify_n(int p){
+    if((points + p) > 6 || 2 * p > player->getCredits()){
+        p = 0;
+    }else{
+        points += p;
+        notify(2*int(p),BUYPOINTS);
+    }
+    return p;
+}
+
 
 unsigned Turn::modifyPoints(){
     unsigned choice = 2;

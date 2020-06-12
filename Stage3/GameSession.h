@@ -15,16 +15,16 @@ private:
     vector<shared_ptr<Round>> rounds;
     const Dice& dice;
     bool isEnd;
-    void removePlayer();
 public:
     GameSession(const Dice& dice):players(), dice(dice), rounds(), isEnd(false){}
     void accept(shared_ptr<User> user, IStrategy* strategy);
     bool isGameEnd(){return isEnd;}
     void play();
-    void startRound(unsigned index, vector<shared_ptr<Player>>& players);
+    shared_ptr<Round> startRound(unsigned index);
     void printRoundResults();
     void printCurrentCredits();
     unsigned getPlayerNum(){return players.size();}
     unsigned playMove(Turn* turn, unsigned move);
+    void removePlayer();
 };
 #endif /* GameSession_h */

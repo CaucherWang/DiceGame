@@ -30,5 +30,6 @@ public:
 	    for(auto listener:pointsUpdateListeners)
             listener->updatePoints(credit,name);
     }
+    unsigned modify_n(int p);
 };
 #endif /* Turn_h */

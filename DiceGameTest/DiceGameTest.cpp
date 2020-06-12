@@ -35,6 +35,8 @@ namespace DiceGameTest
 		{
 			auto platform = DiceGamePlatform::getInstance();
 			Logger::WriteMessage("Test Login");
+            srand(time(nullptr));
+            const Dice dice;
 			Player test_player_D("D");			
 			auto game_table1 = platform->login(test_player_D);
 			Assert::IsTrue(game_table1==nullptr);
