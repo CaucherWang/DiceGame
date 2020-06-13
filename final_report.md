@@ -51,3 +51,14 @@
 ```
 
 ![屏幕快照 2020-06-12 下午7.24.53](final_report.assets/屏幕快照 2020-06-12 下午7.24.53.png)
+
+### 迭代设计思路
+
+- 静态类之间的关系说明：系统类为DiceGamePlatform，聚合多个用户，关联多个GameSession。每个用户关联多个玩家，每次加入GameSession时创建玩家，每个玩家实现一个更新积分纪录的接口。每个GameSession关联一个Dice，组合多个Round。每个Round组合多个Turn，实现一个更新积分纪录的接口。每个Turn关联一个玩家，聚合多个更新积分纪录的接口。
+
+- 积分：积分纪录可以看作一个新的数据类型，储存记录时间、改变积分的行为类型和积分改变的数值。每一个用户储存多条记录。积分纪录通过打印方法标准输出。用户类与积分纪录为一对多的聚合关系。
+- 积分更新：每一个turn里如果需要购买点数，需要对于round.pointsBet, 和用户的积分纪录进行更新。此处用到了Observer模式。Turn作为subject类，Player和Round通过新建的IUpdatePoints监听积分纪录的更新。
+- 计算点数策略：采用Strategy模式，三种积分纪录CAddRemain6, CMultRemain6, CAverage类型实现同一个抽象类接口IStrategy，Player类与计算点数策略为一对一的组合关系。
+
+- 为了更高效地使用随机函数和明确业务逻辑语义，将骰子设计为一个有静态roll方法的抽象类，在GameSession里面调用。
+
